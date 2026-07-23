@@ -1,0 +1,4 @@
+initial begin
+	$dumpfile("tb.vcd");
+	$dumpvars;
+end

@@ -17,22 +17,22 @@ class mem_bfm;
 	endtask
 
 	task drive_tx(input mem_tx tx);
-		@(posedge vif.clk);
-		vif.wr_rd = tx.wr_rd;
-		vif.addr  = tx.addr;
-		vif.wdata = tx.wdata;
-		vif.valid = 1;
-		wait(vif.ready==1);
+		@(posedge vif.bfm_cb.clk);
+		vif.bfm_cb.wr_rd <= tx.wr_rd;
+		vif.bfm_cb.addr  <= tx.addr;
+		vif.bfm_cb.wdata <= tx.wdata;
+		vif.bfm_cb.valid <= 1;
+		wait(vif.bfm_cb.ready==1);
 		
 		if (tx.wr_rd==0) begin
-			@(posedge vif.clk);
-			tx.rdata = vif.rdata;
+			@(vif.bfm_cb);
+			tx.rdata = vif.bfm_cb.rdata;
 		end
 
-		@(posedge vif.clk);
-		vif.wr_rd = 0
-		vif.addr  = 0
-		vif.wdata = 0
-		vif.valid = 0
+		@(vif.bfm_cb);
+		vif.bfm_cb.wr_rd <= 0;
+		vif.bfm_cb.addr  <= 0;
+		vif.bfm_cb.wdata <= 0;
+		vif.bfm_cb.valid <= 0;
 	endtask
 endclass

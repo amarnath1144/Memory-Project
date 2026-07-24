@@ -5,6 +5,7 @@
 `include "mem_intrf.sv"
 `include "mem_bfm.sv"
 `include "mem_mon.sv"
+`include "mem_cov.sv"
 `include "mem_agent.sv"
 `include "mem_sbd.sv"
 `include "mem_env.sv"

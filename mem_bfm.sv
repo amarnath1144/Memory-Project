@@ -17,7 +17,7 @@ class mem_bfm;
 	endtask
 
 	task drive_tx(input mem_tx tx);
-		@(posedge vif.bfm_cb.clk);
+		@(vif.bfm_cb);
 		vif.bfm_cb.wr_rd <= tx.wr_rd;
 		vif.bfm_cb.addr  <= tx.addr;
 		vif.bfm_cb.wdata <= tx.wdata;

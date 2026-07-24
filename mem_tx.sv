@@ -6,7 +6,7 @@ class mem_tx;
 		 bit[`WIDTH-1:0]rdata;
 
 	function void print(input string str="mem_tx");
-		$display("%0t: --------------%0s-------------",str);
+		$display("%0t: --------------%0s-------------",$time,str);
 		$display("wr_rd=%b",wr_rd);
 		$display("addr=%0d",addr);
 		$display("wdata=%0d",wdata);

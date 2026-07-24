@@ -7,7 +7,7 @@ class mem_gen;
 		case(mem_common::test_name)
 			"1WR":begin
 				tx=new();
-				tx.randomize() with{tx.wr_rd==1'b1;};
+				assert (tx.randomize() with{tx.wr_rd==1'b1;});
 				mem_common::gen2bfm.put(tx);
 				tx.print("mem_gen");
 			end
@@ -15,7 +15,7 @@ class mem_gen;
 			"5WR":begin
 				tx=new();
 				repeat(5) begin
-					tx.randomize() with{tx.wr_rd==1'b1;};
+					assert (tx.randomize() with{tx.wr_rd==1'b1;});
 					temp=new tx;
 					mem_common::gen2bfm.put(temp);
 					tx.print("mem_gen");
@@ -26,7 +26,7 @@ class mem_gen;
 
 				//write
 				tx=new();
-				tx.randomize() with{tx.wr_rd==1'b1;};
+				assert (tx.randomize() with{tx.wr_rd==1'b1;});
 				mem_common::gen2bfm.put(tx);
 				tx.print("mem_gen");
 
@@ -34,15 +34,16 @@ class mem_gen;
 
 				//read
 				tx=new();
-				tx.randomize() with{tx.wr_rd==1'b0;tx.addr==temp.addr;tx.wdata==0;};
+				assert (tx.randomize() with{tx.wr_rd==1'b0;tx.addr==temp.addr;tx.wdata==0;});
 				mem_common::gen2bfm.put(tx);
 				tx.print("mem_gen");
 
 			end
 		
 			"5WR_5RD":begin
+				tx=new();
 				repeat(5) begin
-					tx.randomize() with{tx.wr_rd==1'b1;};
+					assert (tx.randomize() with{tx.wr_rd==1'b1;});
 					temp=new tx;
 					mem_common::gen2bfm.put(temp);
 					tx.print("mem_gen");
@@ -52,14 +53,17 @@ class mem_gen;
 				repeat(5) begin
 					temp=txQ.pop_front();
 					tx=new();
-					tx.randomize() with{tx.wr_rd==1'b0;tx.addr==temp.addr;tx.wdata==0;};
+					assert (tx.randomize() with {tx.wr_rd==1'b0;tx.addr==temp.addr;tx.wdata==0;});
 					mem_common::gen2bfm.put(tx);
 					tx.print("mem_gen");
 				end
+
+			end
 		
 			"NWR_NRD":begin
+				tx=new();
 				repeat(mem_common::N) begin
-					tx.randomize() with(tx.wr_rd==1'b1;);
+					assert (tx.randomize() with{tx.wr_rd==1'b1;});
 					temp=new tx;
 					mem_common::gen2bfm.put(temp);
 					tx.print("mem_gen");
@@ -69,11 +73,12 @@ class mem_gen;
 				repeat(mem_common::N) begin
 					temp=txQ.pop_front();
 					tx=new();
-					tx.randomize() with{tx.wr_rd==1'b0;tx.addr==temp.addr;tx.wdata==0;};
+					assert (tx.randomize() with {tx.wr_rd==1'b0;tx.addr==temp.addr;tx.wdata==0;});
 					mem_common::gen2bfm.put(tx);
 					tx.print("mem_gen");
 				end
 		
 			end
+		endcase
 	endtask
 endclass

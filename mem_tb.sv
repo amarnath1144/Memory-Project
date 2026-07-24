@@ -21,8 +21,8 @@ module tb;
 		res=1;
 		repeat(2) @(posedge clk);
 		res=0;
-		$value$plusargs("test_name=%0s",mem_common::test_name);
-		$value$plusargs("N=%0d",mem_common::N);
+		assert($value$plusargs("test_name=%0s",mem_common::test_name));
+		assert($value$plusargs("N=%0d",mem_common::N));
 		env=new();
 		env.run();
 	end
@@ -31,3 +31,5 @@ module tb;
 		$finish;
 	end
 endmodule
+
+

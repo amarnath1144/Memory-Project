@@ -27,7 +27,7 @@ module tb;
 		env.run();
 	end
 	initial begin
-		#500;
+		#2500;
 		$finish;
 	end
 endmodule

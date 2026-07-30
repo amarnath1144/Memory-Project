@@ -3,15 +3,15 @@ class mem_cov;
 	mem_tx tx;
 
 covergroup CG;
-		option.name ="MEM_COVERAGE";
-		option.per_instance=1;
+		//	option.name ="MEM_COVERAGE";
+		//	option.per_instance=1;
 
 		WR_RD:coverpoint tx.wr_rd{
 				bins WRITES = {1'b1};
 				bins READS  = {1'b0};
 
-				option.comment="WR_RD coverpoint happened";
-				option.weight ="1";
+				//	option.comment="WR_RD coverpoint happened";
+				//	option.weight ="1";
 
 		}
 		ADDRESS:coverpoint tx.addr{
@@ -53,23 +53,23 @@ covergroup CG;
 				//	bins ADDR[] = {[0:31]} with(item%2==0);
 				//  option.auto_bin_max= 32;
 
-				bins ADDR0 ={[0:3]};
-				bins ADDR1 ={[4:7]};
-				bins ADDR2 ={[8:11]};
-				bins ADDR3 ={[12:15]};
-				bins ADDR4 ={[16:19]};
-				bins ADDR5 ={[20:23]};
-				bins ADDR6 ={[24:27]};
-				bins ADDR7 ={[28:31]};
+				//	bins ADDR0 ={[0:3]};
+				//	bins ADDR1 ={[4:7]};
+				//	bins ADDR2 ={[8:11]};
+				//	bins ADDR3 ={[12:15]};
+				//	bins ADDR4 ={[16:19]};
+				//	bins ADDR5 ={[20:23]};
+				//	bins ADDR6 ={[24:27]};
+				//	bins ADDR7 ={[28:31]};
 
-				option.comment="ADDRESS coverpoint happened";
-				option.weight=3;
+				//	option.comment="ADDRESS coverpoint happened";
+				//	option.weight=3;
 		}
 		CROSS_WR_RD_ADDRESS: cross WR_RD,ADDRESS{
 			//bins A= binsof(WR_RD.WRITES);
-			bins B = binsof(ADDRESS) intersect{[3:9]};
-			option.comment="Cross coverage of WR_DR and ADDRESS coverpoint happened";
-			option.weight=5;
+			//bins B = binsof(ADDRESS) intersect{[3:9]};
+			//option.comment="Cross coverage of WR_DR and ADDRESS coverpoint happened";
+			//option.weight=5;
 		}
 	endgroup
 

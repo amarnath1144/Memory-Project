@@ -20,7 +20,7 @@ class mem_mon;
 				end
 				mem_common::mon2cov.put(tx);
 				mem_common::mon2sbd.put(tx);
-				tx.print("mem_mon");
+				//tx.print("mem_mon");
 			end
 		end
 	endtask

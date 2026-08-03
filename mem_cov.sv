@@ -83,7 +83,7 @@ covergroup CG;
 		forever begin
 			mem_common::mon2cov.get(tx);
 			CG.sample();
-			tx.print("mem_cov");
+		//	tx.print("mem_cov");
 		end
 	endtask
 

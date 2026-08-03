@@ -12,7 +12,8 @@ class mem_bfm;
 		forever begin
 			mem_common::gen2bfm.get(tx);
 			drive_tx(tx);	
-			tx.print("mem_bfm");
+			//tx.print("mem_bfm");
+			mem_common::bfm_count++;
 		end
 	endtask
 

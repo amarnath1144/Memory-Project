@@ -27,7 +27,17 @@ module tb;
 		env.run();
 	end
 	initial begin
-		#2500;
+		#20;
+		wait(mem_common::gen_count==mem_common::bfm_count);
+		#10;
+		if(mem_common::matchings!=0 && mem_common::mismatchings==0) begin
+			$display("**************** TEST PASSED **************");
+			$display("matchings=%0d,  mismatchings=%0d",mem_common::matchings, mem_common::mismatchings);
+		end
+		else begin
+			$display("**************** TEST FAILED **************");
+			$display("matchings=%0d,  mismatchings=%0d",mem_common::matchings, mem_common::mismatchings);
+		end
 		$finish;
 	end
 endmodule
